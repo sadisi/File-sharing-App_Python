@@ -57,3 +57,20 @@ input[type="submit"]:hover{
     box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
 }
 
+.deletebtn{
+    padding: 12px;
+    margin-top: 2px;
+    background-color: red;
+    color: #f0f0f0;
+    border-style: none;
+    border-radius: 5px;
+
+}
+
+.deletebtn:hover{
+    background-color: black;
+    color: #f0f0f0;
+    cursor: pointer;
+    transition: 0.8s;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.1);
+}

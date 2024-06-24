@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory, redirect, url_for
+
 import os
 
 app = Flask(__name__)
@@ -22,11 +23,18 @@ def upload_file():
         return redirect(request.url)
     if file:
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-        return redirect(url_for('FileSharing'))
+        return redirect(url_for('index'))
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
+@app.route('/delete/<filename>', methods=['POST'])
+def delete_file(filename):
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        return redirect(url_for('index'))
+
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=8080)
